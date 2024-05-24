@@ -12,10 +12,10 @@ int Application::Init()
     m_inputHandler = new InputHandler();
     m_inputHandler->Init();
 
-    m_D3D = new D3D;
-    bool result;
-    result = m_D3D->Init(hwnd, width, screen, VSYNC_ENABLED, FULL_SCREEN, SCREEN_DEPTH, SCREEN_NEAR);
-    if (!result) { MessageBox(hwnd, L"DX FAILURE", L"Error", MB_OK); return false; }
+    //m_D3D = new D3D;
+    //bool result;
+    //result = m_D3D->Init(hwnd, width, screen, VSYNC_ENABLED, FULL_SCREEN, SCREEN_DEPTH, SCREEN_NEAR);
+    //if (!result) { MessageBox(hwnd, L"DX FAILURE", L"Error", MB_OK); return false; }
 
     return 0;
 }
@@ -38,7 +38,7 @@ bool Application::Shutdown()
 
     if(m_D3D)
     {
-        m_D3D->Shutdown();
+       // m_D3D->Shutdown();
         delete m_D3D;
     }
 

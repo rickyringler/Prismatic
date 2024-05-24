@@ -4,9 +4,13 @@
 #include <d3d11.h>
 #include <d3dcompiler.h>
 #include <DirectXMath.h>
+#include <dxgi.h>
 
 #pragma comment (lib, "d3d11.lib")
 #pragma comment (lib, "d3dcompiler.lib")
+#pragma comment (lib, "dxgi.lib")
+
+#pragma warning(disable : C26495)
 
 class D3D
 {
@@ -34,11 +38,11 @@ private:
 	ID3D11PixelShader* m_ps = nullptr;
 	ID3D11Buffer* m_vb = nullptr;
 	ID3D11Texture2D* m_depthStencilBuffer;
-	ID3D11DepthStencilState m_stencilState = nullptr;
-	ID3D10DepthStencilView m_stencilView = nullptr;
-	DirectX::XMMATRIX m_projectionMatrix = nullptr;
-	DirectX::XMMATRIX m_worldMatrix = nullptr;
-	DirectX::XMMATRIX m_orthographicMatrix = nullptr;
+	ID3D11DepthStencilState* m_stencilState;
+	ID3D11DepthStencilView* m_stencilView;
+	DirectX::XMMATRIX m_projectionMatrix;
+	DirectX::XMMATRIX m_worldMatrix;
+	DirectX::XMMATRIX m_orthographicMatrix;
 	
 	bool m_vsync = false;
 	int m_VRAM;
@@ -46,6 +50,9 @@ private:
 
 
 	bool Init(HWND hwnd,int,int,bool,bool,float,float);
+	void InitRaster(ID3D11RasterizerState rasterizerDesc);
+	void InitStencil(void);
+	void InitViewport(void);
 	void Shutdown(void);
 	void GetProjectionM(DirectX::XMMATRIX&);
 	void GetWorldM(DirectX::XMMATRIX&);
